@@ -3,7 +3,7 @@ package org.univ_paris8.iut.montreuil.saemanagerback.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Personne")
+@Table(name = "personne")
 public class Personne {
 
     @Id
