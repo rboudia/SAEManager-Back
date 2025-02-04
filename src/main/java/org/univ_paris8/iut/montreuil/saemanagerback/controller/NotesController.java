@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.univ_paris8.iut.montreuil.saemanagerback.entity.Notes;
+import org.univ_paris8.iut.montreuil.saemanagerback.dto.NotesDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.service.NotesService;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class NotesController {
     }
 
     @GetMapping
-    public List<Notes> getNotes() {
+    public List<NotesDTO> getNotes() {
         return notesService.getNotes();
     }
 }
