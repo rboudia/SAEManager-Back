@@ -4,42 +4,45 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "personne")
-public class Personne {
+public class PersonneEntity {
 
     @Id
-    private int idpersonne;
+    @Column(name = "idpersonne")
+    private int idPersonne;
 
+    @Column(name = "nom")
     private String nom;
+
+    @Column(name = "prenom")
     private String prenom;
-    private String photodeprofil;
+
+    @Column(name = "photodeprofil")
+    private String photoDeProfil;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "email")
     private String email;
-    private String estadmin;
-    private String estprof;
 
-    public Personne(int idPersonne, String nom, String prenom, String photoDeProfil, String password, String login, String email, String estProf, String estAdmin) {
-        this.idpersonne = idPersonne;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.photodeprofil = photoDeProfil;
-        this.password = password;
-        this.login = login;
-        this.email = email;
-        this.estprof = estProf;
-        this.estadmin = estAdmin;
-    }
+    @Column(name = "estprof")
+    private Integer estProf;
 
-    public Personne() {
+    @Column(name = "estadmin")
+    private Integer estAdmin;
 
+    public PersonneEntity() {
     }
 
     public int getIdPersonne() {
-        return idpersonne;
+        return idPersonne;
     }
 
     public void setIdPersonne(int idPersonne) {
-        this.idpersonne = idPersonne;
+        this.idPersonne = idPersonne;
     }
 
     public String getNom() {
@@ -58,12 +61,12 @@ public class Personne {
         this.prenom = prenom;
     }
 
-    public String getPhotodeprofil() {
-        return photodeprofil;
+    public String getPhotoDeProfil() {
+        return photoDeProfil;
     }
 
-    public void setPhotodeprofil(String photoDeProfil) {
-        this.photodeprofil = photoDeProfil;
+    public void setPhotoDeProfil(String photoDeProfil) {
+        this.photoDeProfil = photoDeProfil;
     }
 
     public String getPassword() {
@@ -90,19 +93,19 @@ public class Personne {
         this.email = email;
     }
 
-    public String getEstProf() {
-        return estprof;
+    public Integer getEstProf() {
+        return estProf;
     }
 
-    public void setEstProf(String estProf) {
-        this.estprof = estProf;
+    public void setEstProf(Integer estProf) {
+        this.estProf = estProf;
     }
 
-    public String getEstAdmin() {
-        return estadmin;
+    public Integer getEstAdmin() {
+        return estAdmin;
     }
 
-    public void setEstAdmin(String estAdmin) {
-        this.estadmin = estAdmin;
+    public void setEstAdmin(Integer estAdmin) {
+        this.estAdmin = estAdmin;
     }
 }

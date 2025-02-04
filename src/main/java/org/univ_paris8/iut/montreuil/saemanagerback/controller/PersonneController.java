@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.univ_paris8.iut.montreuil.saemanagerback.entity.Personne;
+import org.univ_paris8.iut.montreuil.saemanagerback.dto.PersonneDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.service.PersonneService;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class PersonneController {
     }
 
     @GetMapping
-    public List<Personne> getPersonnes() {
+    public List<PersonneDTO> getPersonnes() {
         return personneService.getPersonnes();
     }
 
