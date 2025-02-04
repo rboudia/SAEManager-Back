@@ -2,16 +2,18 @@ package org.univ_paris8.iut.montreuil.saemanagerback.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.PersonneDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.service.PersonneService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import java.util.List;
 
 @RestController
 @RequestMapping("personne")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PersonneController {
 
     private final PersonneService personneService;
@@ -26,5 +28,10 @@ public class PersonneController {
         return personneService.getPersonnes();
     }
 
-
+    @PostMapping
+    public ResponseEntity<PersonneDTO> addPersonne(@RequestBody PersonneDTO personneDTO) {
+        return ResponseEntity.ok(personneService.addPersonne(personneDTO));
+    }
 }
+
+

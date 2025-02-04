@@ -7,15 +7,17 @@ public class PersonneDTO {
     private String prenom;
     private String photoDeProfil;
     private String email;
+    private String password;
     //private Integer estProf;
     //private Integer estAdmin
 
 
-    public PersonneDTO(Integer idPersonne, String nom, String prenom, String photoDeProfil, String email) {
+    public PersonneDTO(Integer idPersonne, String nom, String prenom, String photoDeProfil,String password, String email) {
         this.idPersonne = idPersonne;
         this.nom = nom;
         this.prenom = prenom;
         this.photoDeProfil = photoDeProfil;
+        this.password = password;
         this.email = email;
     }
 
@@ -57,5 +59,13 @@ public class PersonneDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

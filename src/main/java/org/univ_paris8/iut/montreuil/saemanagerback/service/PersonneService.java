@@ -3,6 +3,7 @@ package org.univ_paris8.iut.montreuil.saemanagerback.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.PersonneDTO;
+import org.univ_paris8.iut.montreuil.saemanagerback.entity.PersonneEntity;
 import org.univ_paris8.iut.montreuil.saemanagerback.mapper.PersonneMapper;
 import org.univ_paris8.iut.montreuil.saemanagerback.repository.PersonneRepository;
 
@@ -26,5 +27,14 @@ public class PersonneService {
                 .stream()
                 .map(personneMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public PersonneDTO addPersonne(PersonneDTO personneDTO) {
+        PersonneEntity personneEntity = personneMapper.toEntity(personneDTO);
+        personneEntity.setEstAdmin(null);
+        personneEntity.setEstProf(0);
+        personneEntity.setPhotoDeProfil(null);
+        personneEntity.setLogin(personneEntity.getPrenom() + "." + personneEntity.getNom());
+        return personneMapper.toDTO(personneRepository.save(personneEntity));
     }
 }
