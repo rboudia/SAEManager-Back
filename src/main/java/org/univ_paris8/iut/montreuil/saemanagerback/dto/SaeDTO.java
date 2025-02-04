@@ -1,46 +1,42 @@
-package org.univ_paris8.iut.montreuil.saemanagerback.entity;
+package org.univ_paris8.iut.montreuil.saemanagerback.dto;
 
-import jakarta.persistence.*;
+import org.univ_paris8.iut.montreuil.saemanagerback.entity.ResponsablesSae;
 
-@Entity
-@Table(name = "sae")
-public class Sae {
+public class SaeDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idsae")
-    private int idSAE;
+    private Integer idSae;
 
-    @Column(name = "nomsae")
     private String nomSae;
 
-    @Column(name = "anneeuniversitaire")
     private String anneeUniversitaire;
 
-    @Column(name = "semestreuniversitaire")
-    private int semestreUniversitaire;
+    private Integer semestreUniversitaire;
 
-    @Column(name = "sujet")
     private String sujet;
 
-    @Column(name = "datemodificationsujet")
     private String dateModificationSujet;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idresp", referencedColumnName = "idResp")
     private ResponsablesSae responsablesSae;
 
 
-    public Sae() {
+    public SaeDTO(Integer idSae, String nomSae, String anneeUniversitaire, Integer semestreUniversitaire, String sujet, String dateModificationSujet, ResponsablesSae responsablesSae) {
+
+        this.idSae = idSae ;
+        this.nomSae = nomSae ;
+        this.anneeUniversitaire = anneeUniversitaire ;
+        this.semestreUniversitaire = semestreUniversitaire ;
+        this.sujet = sujet ;
+        this.dateModificationSujet = dateModificationSujet;
+        this.responsablesSae = responsablesSae;
 
     }
 
-    public int getIdSAE() {
-        return idSAE;
+    public Integer getIdSae() {
+        return idSae;
     }
 
-    public void setIdSAE(int idSAE) {
-        this.idSAE = idSAE;
+    public void setIdSae(Integer idSae) {
+        this.idSae = idSae;
     }
 
     public String getNomSae() {
@@ -59,11 +55,11 @@ public class Sae {
         this.anneeUniversitaire = anneeUniversitaire;
     }
 
-    public int getSemestreUniversitaire() {
+    public Integer getSemestreUniversitaire() {
         return semestreUniversitaire;
     }
 
-    public void setSemestreUniversitaire(int semestreUniversitaire) {
+    public void setSemestreUniversitaire(Integer semestreUniversitaire) {
         this.semestreUniversitaire = semestreUniversitaire;
     }
 
@@ -83,11 +79,12 @@ public class Sae {
         this.dateModificationSujet = dateModificationSujet;
     }
 
-    public ResponsablesSae getResponsable() {
+    public ResponsablesSae getResponsablesSae() {
         return responsablesSae;
     }
 
-    public void setResponsable(ResponsablesSae responsablesSae) {
+    public void setResponsablesSae(ResponsablesSae responsablesSae) {
         this.responsablesSae = responsablesSae;
     }
+
 }

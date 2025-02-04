@@ -9,11 +9,11 @@ public class ResponsablesSae {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idResp")
-    private int idResponsable;
+    @Column(name = "idresp")
+    private int idResp;
 
     @OneToOne
-    @JoinColumn(name = "idSAE", referencedColumnName = "idSAE")
+    @JoinColumn(name = "idsae", referencedColumnName = "idsae")
     private Sae sae ;
 
 
@@ -21,12 +21,12 @@ public class ResponsablesSae {
 
     }
 
-    public int getIdResponsable() {
-        return idResponsable;
+    public int getIdResp() {
+        return idResp;
     }
 
-    public void setIdResponsable(int idResponsable) {
-        this.idResponsable = idResponsable;
+    public void setIdResp(int idResponsable) {
+        this.idResp = idResponsable;
     }
 
     public Sae getSae() {
