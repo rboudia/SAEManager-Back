@@ -8,7 +8,7 @@ public class PersonneEntity {
 
     @Id
     @Column(name = "idpersonne")
-    private int idPersonne;
+    private Integer idPersonne;
 
     @Column(name = "nom")
     private String nom;
@@ -37,11 +37,11 @@ public class PersonneEntity {
     public PersonneEntity() {
     }
 
-    public int getIdPersonne() {
+    public Integer getIdPersonne() {
         return idPersonne;
     }
 
-    public void setIdPersonne(int idPersonne) {
+    public void setIdPersonne(Integer idPersonne) {
         this.idPersonne = idPersonne;
     }
 
