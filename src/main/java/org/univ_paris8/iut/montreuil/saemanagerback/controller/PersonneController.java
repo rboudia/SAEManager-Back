@@ -26,5 +26,15 @@ public class PersonneController {
         return personneService.getPersonnes();
     }
 
+    @GetMapping("/prof")
+    public List<PersonneDTO> getProfesseurs() {
+        return personneService.getPersonnesByEstProf(1);
+    }
+
+    @GetMapping("/etudiant")
+    public List<PersonneDTO> getEtudiants() {
+        return personneService.getPersonnesByEstProf(0);
+    }
+
 
 }
