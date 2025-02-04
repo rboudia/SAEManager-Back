@@ -9,11 +9,11 @@ public class ResponsablesSae {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idResp")
+    @Column(name = "idresp")
     private int idResp;
 
     @OneToOne
-    @JoinColumn(name = "idSAE", referencedColumnName = "idSAE")
+    @JoinColumn(name = "idsae", referencedColumnName = "idsae")
     private Sae sae ;
 
 

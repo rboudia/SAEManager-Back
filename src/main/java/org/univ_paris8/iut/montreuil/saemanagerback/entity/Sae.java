@@ -8,26 +8,26 @@ public class Sae {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idSAE")
+    @Column(name = "idsae")
     private int idSAE;
 
-    @Column(name = "nomSae")
+    @Column(name = "nomsae")
     private String nomSae;
 
-    @Column(name = "anneeUniversitaire")
+    @Column(name = "anneeuniversitaire")
     private String anneeUniversitaire;
 
-    @Column(name = "semestreUniversitaire")
+    @Column(name = "semestreuniversitaire")
     private int semestreUniversitaire;
 
     @Column(name = "sujet")
     private String sujet;
 
-    @Column(name = "dateModificationSujet")
+    @Column(name = "datemodificationsujet")
     private String dateModificationSujet;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idResponsable", referencedColumnName = "idResponsable")
+    @JoinColumn(name = "idresp", referencedColumnName = "idResp")
     private ResponsablesSae responsablesSae;
 
 
