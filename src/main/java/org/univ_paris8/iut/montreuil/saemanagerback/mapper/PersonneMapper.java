@@ -11,6 +11,7 @@ public class PersonneMapper {
                 entity.getNom(),
                 entity.getPrenom(),
                 entity.getPhotoDeProfil(),
+                entity.getPassword(),
                 entity.getEmail());
 
         return dto;
@@ -23,6 +24,7 @@ public class PersonneMapper {
         entity.setNom(dto.getNom());
         entity.setPrenom(dto.getPrenom());
         entity.setPhotoDeProfil(dto.getPhotoDeProfil());
+        entity.setPassword(dto.getPassword());
         entity.setEmail(dto.getEmail());
 
         return entity;
