@@ -27,4 +27,11 @@ public class PersonneService {
                 .map(personneMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public List<PersonneDTO> getPersonnesByEstProf(Integer estProf) {
+        return personneRepository.findByEstProf(estProf)
+                .stream()
+                .map(personneMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }
