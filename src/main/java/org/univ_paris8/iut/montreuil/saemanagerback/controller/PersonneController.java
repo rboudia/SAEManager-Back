@@ -2,9 +2,9 @@ package org.univ_paris8.iut.montreuil.saemanagerback.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.PersonneDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.service.PersonneService;
 
@@ -36,5 +36,28 @@ public class PersonneController {
         return personneService.getPersonnesByEstProf(0);
     }
 
+    @PutMapping("/prof/ajouterProf/{id}")
+    public ResponseEntity<String> ajouterProf(@PathVariable Integer id) {
+        String response = personneService.updateEstProf(1, id);
+
+        if (response != null) {
+            return ResponseEntity.ok(response);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La personne avec l'ID : " + id + ", n'existe pas");
+        }
+    }
+
+    @PutMapping("/prof/supprimerProf/{id}")
+    public ResponseEntity<String> supprimerProf(@PathVariable Integer id) {
+        String response = personneService.updateEstProf(0, id);
+
+        if (response != null) {
+            return ResponseEntity.ok(response);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La personne avec l'ID : " + id + ", n'existe pas");
+        }
+    }
 
 }

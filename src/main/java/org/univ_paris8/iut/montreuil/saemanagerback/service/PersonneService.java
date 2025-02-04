@@ -34,4 +34,22 @@ public class PersonneService {
                 .map(personneMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public String updateEstProf(Integer estProf, Integer idPersonne) {
+        if (personneExiste(idPersonne)) {
+            personneRepository.updateEstProf(estProf, idPersonne);
+
+            if (idPersonne == 0) {
+                return "La personne avec l'ID : " + idPersonne + ", est maintenant un étudiant";
+            } else {
+                return "La personne avec l'ID : " + idPersonne + ", est maintenant un professeur";
+            }
+        } else {
+            return null;
+        }
+    }
+
+    private boolean personneExiste(Integer idPersonne) {
+        return personneRepository.existsById(idPersonne);
+    }
 }
