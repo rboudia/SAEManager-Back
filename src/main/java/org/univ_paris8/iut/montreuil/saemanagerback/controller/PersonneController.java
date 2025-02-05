@@ -36,28 +36,28 @@ public class PersonneController {
         return personneService.getPersonnesByEstProf(0);
     }
 
-    @PutMapping("/prof/ajouterProf/{id}")
-    public ResponseEntity<String> ajouterProf(@PathVariable Integer id) {
-        String response = personneService.updateEstProf(1, id);
-
-        if (response != null) {
+    @PutMapping("/prof/ajouterProf")
+    public ResponseEntity<String> ajouterProf(@RequestBody List<Integer> idsPersonne) {
+        try {
+            String response = personneService.updateEstProf(1, idsPersonne);
             return ResponseEntity.ok(response);
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La personne avec l'ID : " + id + ", n'existe pas");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 
-    @PutMapping("/prof/supprimerProf/{id}")
-    public ResponseEntity<String> supprimerProf(@PathVariable Integer id) {
-        String response = personneService.updateEstProf(0, id);
 
-        if (response != null) {
+    @PutMapping("/prof/supprimerProf")
+    public ResponseEntity<String> supprimerProf(@RequestBody List<Integer> idsPersonne) {
+        try {
+            String response = personneService.updateEstProf(0, idsPersonne);
             return ResponseEntity.ok(response);
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("La personne avec l'ID : " + id + ", n'existe pas");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
+
 
 }

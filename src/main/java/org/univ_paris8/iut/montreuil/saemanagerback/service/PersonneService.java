@@ -2,6 +2,7 @@ package org.univ_paris8.iut.montreuil.saemanagerback.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.PersonneDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.mapper.PersonneMapper;
 import org.univ_paris8.iut.montreuil.saemanagerback.repository.PersonneRepository;
@@ -35,18 +36,17 @@ public class PersonneService {
                 .collect(Collectors.toList());
     }
 
-    public String updateEstProf(Integer estProf, Integer idPersonne) {
-        if (personneExiste(idPersonne)) {
-            personneRepository.updateEstProf(estProf, idPersonne);
-
-            if (idPersonne == 0) {
-                return "La personne avec l'ID : " + idPersonne + ", est maintenant un étudiant";
+    @Transactional(rollbackFor = Exception.class)
+    public String updateEstProf(Integer estProf, List<Integer> idsPersonne) throws Exception {
+        for (Integer idPersonne : idsPersonne) {
+            if (personneExiste(idPersonne)) {
+                personneRepository.updateEstProf(estProf, idPersonne);
             } else {
-                return "La personne avec l'ID : " + idPersonne + ", est maintenant un professeur";
+                throw new Exception("La personne avec cette id n'existe pas : " + idPersonne);
             }
-        } else {
-            return null;
         }
+
+        return "Les personnes avec les ids suivant ont bien été modifiées : " + idsPersonne.toString();
     }
 
     private boolean personneExiste(Integer idPersonne) {
