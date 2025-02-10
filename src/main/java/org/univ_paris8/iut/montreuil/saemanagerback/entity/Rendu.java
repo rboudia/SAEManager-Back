@@ -5,7 +5,7 @@ import jdk.jfr.Enabled;
 
 import java.util.Date;
 
-@Enabled
+@Entity
 @Table(name = "rendu")
 public class Rendu {
     @Id

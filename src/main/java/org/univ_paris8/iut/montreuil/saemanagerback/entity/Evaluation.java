@@ -1,9 +1,9 @@
 package org.univ_paris8.iut.montreuil.saemanagerback.entity;
 
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 
-@Enabled
+
+@Entity
 @Table(name = "evaluation")
 public class Evaluation {
     @Id
