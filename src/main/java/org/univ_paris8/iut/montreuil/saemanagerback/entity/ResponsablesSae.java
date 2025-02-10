@@ -12,7 +12,7 @@ public class ResponsablesSae {
     @Column(name = "idResp")
     private int idResp;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idSAE", referencedColumnName = "idSAE")
     private Sae sae ;
 
