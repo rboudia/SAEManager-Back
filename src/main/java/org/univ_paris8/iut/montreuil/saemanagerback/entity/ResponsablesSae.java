@@ -4,16 +4,16 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "responsablesSae")
+@Table(name = "responsablessae")
 public class ResponsablesSae {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idResp")
+    @Column(name = "idresp")
     private int idResp;
 
     @ManyToOne
-    @JoinColumn(name = "idSAE", referencedColumnName = "idSAE")
+    @JoinColumn(name = "idsae", referencedColumnName = "idsae")
     private Sae sae ;
 
 
