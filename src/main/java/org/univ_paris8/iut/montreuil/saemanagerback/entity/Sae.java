@@ -27,7 +27,7 @@ public class Sae {
     private String dateModificationSujet;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idresp", referencedColumnName = "idResp")
+    @JoinColumn(name = "idresp", referencedColumnName = "idresp")
     private ResponsablesSae responsablesSae;
 
 

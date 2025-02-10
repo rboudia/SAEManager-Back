@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "responsablesSae")
+@Table(name = "responsablessae")
 public class ResponsablesSae {
 
     @Id
@@ -12,7 +12,7 @@ public class ResponsablesSae {
     @Column(name = "idresp")
     private int idResp;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "idsae", referencedColumnName = "idsae")
     private Sae sae ;
 
