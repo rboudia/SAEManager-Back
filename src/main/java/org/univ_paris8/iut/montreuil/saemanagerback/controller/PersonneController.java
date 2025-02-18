@@ -39,8 +39,8 @@ public class PersonneController {
         return personneService.getPersonnesByEstProf(0);
     }
 
-    @GetMapping("/etudiant/name")
-    public List<PersonneDTO> getEtudiantByName(@RequestParam String name) {
+    @GetMapping("/name")
+    public List<PersonneDTO> getPersonneByName(@RequestParam String name) {
         return personneService.getPersonneByName(name);
     }
 
