@@ -5,14 +5,13 @@ import org.univ_paris8.iut.montreuil.saemanagerback.entity.Sae;
 public class ResponsablesSaeDTO {
 
     private Integer idResp;
+    private Integer idSae;
 
-    private Sae sae;
 
-
-    public ResponsablesSaeDTO(Integer idResp, Sae sae) {
+    public ResponsablesSaeDTO( Integer idResp, Integer idSae) {
 
         this.idResp = idResp;
-        this.sae = sae;
+        this.idSae = idSae;
 
     }
 
@@ -24,13 +23,11 @@ public class ResponsablesSaeDTO {
         this.idResp = idResp;
     }
 
-    public Sae getSae() {
-        return sae;
+    public Integer getIdSae() {
+        return idSae;
     }
 
-    public void setSae(Sae sae) {
-        this.sae = sae;
+    public void setIdSae(Integer idSae) {
+        this.idSae = idSae;
     }
-
-
 }
