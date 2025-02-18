@@ -2,6 +2,9 @@ package org.univ_paris8.iut.montreuil.saemanagerback.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "sae")
 public class Sae {
@@ -9,7 +12,7 @@ public class Sae {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idsae")
-    private int idSAE;
+    private Integer idSAE;
 
     @Column(name = "nomsae")
     private String nomSae;
@@ -26,20 +29,44 @@ public class Sae {
     @Column(name = "datemodificationsujet")
     private String dateModificationSujet;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idresp", referencedColumnName = "idresp")
-    private ResponsablesSae responsablesSae;
+/*
+    @ManyToMany
+    @JoinTable(
+            name = "responsablessae",
+            joinColumns = @JoinColumn(name = "idsae"),
+            inverseJoinColumns = @JoinColumn(name = "idresp")
+    )
+    private List<ResponsablesSae> listeResponsables;
 
+ */
+
+    @ManyToOne
+    @JoinColumn(name = "idResponsable", referencedColumnName = "idPersonne", nullable = false)
+    private PersonneEntity createur;
+
+
+    @OneToMany(mappedBy = "sae", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ResponsablesSae> listeResponsables = new ArrayList<>();
 
     public Sae() {
 
     }
 
+    public Sae(String nomSae, String anneeUniversitaire, int semestreUniversitaire, String sujet, String dateModificationSujet ) {
+        this.nomSae = nomSae;
+        this.anneeUniversitaire = anneeUniversitaire;
+        this.semestreUniversitaire = semestreUniversitaire;
+        this.sujet = sujet;
+        this.dateModificationSujet = dateModificationSujet;
+
+    }
+
+
     public int getIdSAE() {
         return idSAE;
     }
 
-    public void setIdSAE(int idSAE) {
+    public void setIdSAE(Integer idSAE) {
         this.idSAE = idSAE;
     }
 
@@ -83,11 +110,28 @@ public class Sae {
         this.dateModificationSujet = dateModificationSujet;
     }
 
-    public ResponsablesSae getResponsable() {
+   /* public ResponsablesSae getResponsable() {
         return responsablesSae;
     }
 
     public void setResponsable(ResponsablesSae responsablesSae) {
         this.responsablesSae = responsablesSae;
+    }
+    */
+
+    public List<ResponsablesSae> getListeResponsables() {
+        return listeResponsables;
+    }
+
+    public void setListeResponsables(List<ResponsablesSae> listeResponsables) {
+        this.listeResponsables = listeResponsables;
+    }
+
+    public PersonneEntity getCreateur() {
+        return createur;
+    }
+
+    public void setCreateur(PersonneEntity createur) {
+        this.createur = createur;
     }
 }

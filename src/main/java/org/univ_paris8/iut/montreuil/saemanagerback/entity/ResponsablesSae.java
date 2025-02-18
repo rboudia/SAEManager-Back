@@ -7,26 +7,35 @@ import jakarta.persistence.*;
 @Table(name = "responsablessae")
 public class ResponsablesSae {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idresp")
-    private int idResp;
+    @EmbeddedId
+    private ResponsablesSaeId id;
+
 
     @ManyToOne
-    @JoinColumn(name = "idsae", referencedColumnName = "idsae")
-    private Sae sae ;
+    @MapsId("idSae") // Associe idsae de ResponsablesSaeId avec l'entité Sae
+    @JoinColumn(name = "idSAE")
+    private Sae sae;
 
 
-    public ResponsablesSae() {
+    @ManyToOne
+    @MapsId("idResp") // Associe idResp de ResponsablesSaeId avec l'entité PersonneEntity
+    @JoinColumn(name = "idResp")
+    private PersonneEntity responsable;
 
+    public ResponsablesSae() {}
+
+    public ResponsablesSae(Sae sae, PersonneEntity responsable) {
+        this.id = new ResponsablesSaeId(sae.getIdSAE(), responsable.getIdPersonne());
+        this.sae = sae;
+        this.responsable = responsable;
     }
 
-    public int getIdResp() {
-        return idResp;
+    public ResponsablesSaeId getId() {
+        return id;
     }
 
-    public void setIdResp(int idResponsable) {
-        this.idResp = idResponsable;
+    public void setId(ResponsablesSaeId id) {
+        this.id = id;
     }
 
     public Sae getSae() {
@@ -37,5 +46,21 @@ public class ResponsablesSae {
         this.sae = sae;
     }
 
+    public PersonneEntity getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(PersonneEntity responsable) {
+        this.responsable = responsable;
+    }
+
+    public Integer getIdSae() {
+        return sae != null ? sae.getIdSAE() : null;
+    }
+
+    public Integer getIdResponsable() {
+        return responsable != null ? responsable.getIdPersonne() : null;
+    }
 
 }
+

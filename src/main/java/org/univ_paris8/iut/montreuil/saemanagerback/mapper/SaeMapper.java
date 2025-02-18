@@ -1,39 +1,95 @@
 package org.univ_paris8.iut.montreuil.saemanagerback.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.SaeDTO;
+import org.univ_paris8.iut.montreuil.saemanagerback.entity.PersonneEntity;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.Sae;
+import org.univ_paris8.iut.montreuil.saemanagerback.entity.ResponsablesSae;
+import org.springframework.stereotype.Component;
+import org.univ_paris8.iut.montreuil.saemanagerback.repository.PersonneRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Component
 public class SaeMapper {
 
-    public SaeDTO toDTO(Sae entity) {
+    private final ResponsableSaeMapper responsableSaeMapper;
+    private final PersonneRepository personneRepository;
 
-        SaeDTO dto = new SaeDTO(
-                entity.getIdSAE(),
+    @Autowired
+    public SaeMapper(ResponsableSaeMapper responsableSaeMapper, PersonneRepository personneRepository) {
+        this.responsableSaeMapper = responsableSaeMapper;
+        this.personneRepository = personneRepository;
+    }
+
+    public SaeDTO toDto(Sae entity) {
+        if (entity == null) {
+            return null;
+        }
+
+        return new SaeDTO(
                 entity.getNomSae(),
                 entity.getAnneeUniversitaire(),
                 entity.getSemestreUniversitaire(),
                 entity.getSujet(),
                 entity.getDateModificationSujet(),
-                entity.getResponsable()
+                entity.getCreateur().getIdPersonne(),
+                entity.getListeResponsables() != null ?
+                        entity.getListeResponsables().stream()
+                                .map(responsableSaeMapper::toDto)
+                                .collect(Collectors.toList())
+                        : null
         );
-
-        return dto;
     }
 
-    public Sae toEntity(SaeDTO dto) {
+    /*public Sae toEntity(SaeDTO dto) {
+        if (dto == null) {
+            return null;
+        }
 
         Sae entity = new Sae();
 
-        entity.setIdSAE(dto.getIdSae());
         entity.setNomSae(dto.getNomSae());
         entity.setAnneeUniversitaire(dto.getAnneeUniversitaire());
         entity.setSemestreUniversitaire(dto.getSemestreUniversitaire());
         entity.setSujet(dto.getSujet());
         entity.setDateModificationSujet(dto.getDateModificationSujet());
-        entity.setResponsable(dto.getResponsablesSae());
+
+        if (dto.getListeResponsablesSaeDto() != null) {
+            entity.setListeResponsables(
+                    dto.getListeResponsablesSaeDto().stream()
+                            .map(responsableDTO -> {
+                                // Récupération de l'entité `PersonneEntity`
+                                PersonneEntity responsable = personneRepository.findById(responsableDTO.getIdResp()).orElse(null);
+                                return responsableSaeMapper.toEntity(responsableDTO, entity, responsable);
+                            })
+                            .collect(Collectors.toList())
+            );
+        }
 
         return entity;
 
+    }
+    */
+
+    public Sae toEntity(SaeDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        PersonneEntity createur = personneRepository.findById(dto.getIdResponsable())
+                .orElseThrow(() -> new RuntimeException("Créateur non trouvé avec ID: " + dto.getIdResponsable()));
+
+        Sae sae = new Sae();
+        sae.setNomSae(dto.getNomSae());
+        sae.setAnneeUniversitaire(dto.getAnneeUniversitaire());
+        sae.setSemestreUniversitaire(dto.getSemestreUniversitaire());
+        sae.setSujet(dto.getSujet());
+        sae.setDateModificationSujet(dto.getDateModificationSujet());
+        sae.setCreateur(createur); // Associe le créateur de la SAE
+
+        return sae;
     }
 
 }
