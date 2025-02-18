@@ -2,6 +2,8 @@ package org.univ_paris8.iut.montreuil.saemanagerback.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "sae")
 public class Sae {
@@ -26,21 +28,36 @@ public class Sae {
     @Column(name = "datemodificationsujet")
     private String dateModificationSujet;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "idresp", referencedColumnName = "idresp")
-    private ResponsablesSae responsablesSae;
+    /*@ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "idresponsable", referencedColumnName = "idresp")
+    private ResponsablesSae responsablesSae;*/
+
+    @ManyToMany
+    @JoinTable(
+            name = "responsablessae",
+            joinColumns = @JoinColumn(name = "idsae"),
+            inverseJoinColumns = @JoinColumn(name = "idresp")
+    )
+    private List<ResponsablesSae> listeResponsables;
 
 
     public Sae() {
 
     }
 
-    public int getIdSAE() {
-        return idSAE;
+    public Sae(String nomSae, String anneeUniversitaire, int semestreUniversitaire, String sujet, String dateModificationSujet, List<ResponsablesSae> listeResponsables /*ResponsablesSae responsablesSae*/) {
+        this.nomSae = nomSae;
+        this.anneeUniversitaire = anneeUniversitaire;
+        this.semestreUniversitaire = semestreUniversitaire;
+        this.sujet = sujet;
+        this.dateModificationSujet = dateModificationSujet;
+        //this.responsablesSae = responsablesSae;
+        this.listeResponsables = listeResponsables;
     }
 
-    public void setIdSAE(int idSAE) {
-        this.idSAE = idSAE;
+
+    public int getIdSAE() {
+        return idSAE;
     }
 
     public String getNomSae() {
@@ -83,11 +100,15 @@ public class Sae {
         this.dateModificationSujet = dateModificationSujet;
     }
 
-    public ResponsablesSae getResponsable() {
+   /* public ResponsablesSae getResponsable() {
         return responsablesSae;
     }
 
     public void setResponsable(ResponsablesSae responsablesSae) {
         this.responsablesSae = responsablesSae;
     }
+    */
+
+
+
 }

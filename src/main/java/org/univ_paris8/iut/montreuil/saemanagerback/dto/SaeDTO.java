@@ -2,9 +2,9 @@ package org.univ_paris8.iut.montreuil.saemanagerback.dto;
 
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.ResponsablesSae;
 
-public class SaeDTO {
+import java.util.List;
 
-    private Integer idSae;
+public class SaeDTO {
 
     private String nomSae;
 
@@ -16,28 +16,27 @@ public class SaeDTO {
 
     private String dateModificationSujet;
 
-    private ResponsablesSae responsablesSae;
+    //private ResponsablesSae responsablesSae;
+    private List<ResponsablesSaeDTO> listeResponsablesSaeDto;
 
 
-    public SaeDTO(Integer idSae, String nomSae, String anneeUniversitaire, Integer semestreUniversitaire, String sujet, String dateModificationSujet, ResponsablesSae responsablesSae) {
+    public SaeDTO () {
 
-        this.idSae = idSae ;
+    }
+
+
+    public SaeDTO(String nomSae, String anneeUniversitaire, Integer semestreUniversitaire, String sujet, String dateModificationSujet, List<ResponsablesSaeDTO> listeResponsablesSaeDto /*ResponsablesSae responsablesSae*/) {
+
         this.nomSae = nomSae ;
         this.anneeUniversitaire = anneeUniversitaire ;
         this.semestreUniversitaire = semestreUniversitaire ;
         this.sujet = sujet ;
         this.dateModificationSujet = dateModificationSujet;
-        this.responsablesSae = responsablesSae;
+        //this.responsablesSae = responsablesSae;
+        this.listeResponsablesSaeDto = listeResponsablesSaeDto;
 
     }
 
-    public Integer getIdSae() {
-        return idSae;
-    }
-
-    public void setIdSae(Integer idSae) {
-        this.idSae = idSae;
-    }
 
     public String getNomSae() {
         return nomSae;
@@ -79,6 +78,7 @@ public class SaeDTO {
         this.dateModificationSujet = dateModificationSujet;
     }
 
+    /*
     public ResponsablesSae getResponsablesSae() {
         return responsablesSae;
     }
@@ -86,5 +86,15 @@ public class SaeDTO {
     public void setResponsablesSae(ResponsablesSae responsablesSae) {
         this.responsablesSae = responsablesSae;
     }
+     */
+
+    public List<ResponsablesSaeDTO> getListeResponsablesSaeDto() {
+        return listeResponsablesSaeDto;
+    }
+
+    public void setListeResponsablesSaeDto(List<ResponsablesSaeDTO> listeResponsablesSaeDto) {
+        this.listeResponsablesSaeDto = listeResponsablesSaeDto;
+    }
+
 
 }

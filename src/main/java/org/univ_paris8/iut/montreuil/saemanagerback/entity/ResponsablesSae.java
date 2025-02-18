@@ -5,28 +5,24 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "responsablessae")
+@IdClass(ResponsablesSaeId.class)
 public class ResponsablesSae {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idresp")
-    private int idResp;
-
     @ManyToOne
-    @JoinColumn(name = "idsae", referencedColumnName = "idsae")
-    private Sae sae ;
+    @JoinColumn(name = "idSAE", nullable = false)
+    private Sae sae;
 
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "idResp", nullable = false)
+    private PersonneEntity responsable;
 
-    public ResponsablesSae() {
+    public ResponsablesSae() {}
 
-    }
-
-    public int getIdResp() {
-        return idResp;
-    }
-
-    public void setIdResp(int idResponsable) {
-        this.idResp = idResponsable;
+    public ResponsablesSae(Sae sae, PersonneEntity responsable) {
+        this.sae = sae;
+        this.responsable = responsable;
     }
 
     public Sae getSae() {
@@ -37,5 +33,21 @@ public class ResponsablesSae {
         this.sae = sae;
     }
 
+    public PersonneEntity getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(PersonneEntity responsable) {
+        this.responsable = responsable;
+    }
+
+    public Integer getIdSae() {
+        return sae != null ? sae.getIdSAE() : null;
+    }
+
+    public Integer getIdResponsable() {
+        return responsable != null ? responsable.getIdPersonne() : null;
+    }
 
 }
+
