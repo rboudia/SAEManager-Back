@@ -17,6 +17,8 @@ public class SaeDTO {
     private String dateModificationSujet;
 
     //private ResponsablesSae responsablesSae;
+    private Integer idResponsable;
+
     private List<ResponsablesSaeDTO> listeResponsablesSaeDto;
 
 
@@ -25,7 +27,7 @@ public class SaeDTO {
     }
 
 
-    public SaeDTO(String nomSae, String anneeUniversitaire, Integer semestreUniversitaire, String sujet, String dateModificationSujet, List<ResponsablesSaeDTO> listeResponsablesSaeDto /*ResponsablesSae responsablesSae*/) {
+    public SaeDTO(String nomSae, String anneeUniversitaire, Integer semestreUniversitaire, String sujet, String dateModificationSujet, Integer idResponsable,List<ResponsablesSaeDTO> listeResponsablesSaeDto /*ResponsablesSae responsablesSae*/) {
 
         this.nomSae = nomSae ;
         this.anneeUniversitaire = anneeUniversitaire ;
@@ -33,6 +35,7 @@ public class SaeDTO {
         this.sujet = sujet ;
         this.dateModificationSujet = dateModificationSujet;
         //this.responsablesSae = responsablesSae;
+        this.idResponsable = idResponsable;
         this.listeResponsablesSaeDto = listeResponsablesSaeDto;
 
     }
@@ -96,5 +99,11 @@ public class SaeDTO {
         this.listeResponsablesSaeDto = listeResponsablesSaeDto;
     }
 
+    public Integer getIdResponsable() {
+        return idResponsable;
+    }
 
+    public void setIdResponsable(Integer idResponsable) {
+        this.idResponsable = idResponsable;
+    }
 }

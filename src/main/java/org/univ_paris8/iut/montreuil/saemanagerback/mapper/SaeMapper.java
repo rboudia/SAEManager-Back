@@ -34,6 +34,7 @@ public class SaeMapper {
                 entity.getSemestreUniversitaire(),
                 entity.getSujet(),
                 entity.getDateModificationSujet(),
+                entity.getCreateur().getIdPersonne(),
                 entity.getListeResponsables() != null ?
                         entity.getListeResponsables().stream()
                                 .map(responsableSaeMapper::toDto)
@@ -42,7 +43,7 @@ public class SaeMapper {
         );
     }
 
-    public Sae toEntity(SaeDTO dto) {
+    /*public Sae toEntity(SaeDTO dto) {
         if (dto == null) {
             return null;
         }
@@ -70,4 +71,25 @@ public class SaeMapper {
         return entity;
 
     }
+    */
+
+    public Sae toEntity(SaeDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        PersonneEntity createur = personneRepository.findById(dto.getIdResponsable())
+                .orElseThrow(() -> new RuntimeException("Créateur non trouvé avec ID: " + dto.getIdResponsable()));
+
+        Sae sae = new Sae();
+        sae.setNomSae(dto.getNomSae());
+        sae.setAnneeUniversitaire(dto.getAnneeUniversitaire());
+        sae.setSemestreUniversitaire(dto.getSemestreUniversitaire());
+        sae.setSujet(dto.getSujet());
+        sae.setDateModificationSujet(dto.getDateModificationSujet());
+        sae.setCreateur(createur); // Associe le créateur de la SAE
+
+        return sae;
+    }
+
 }

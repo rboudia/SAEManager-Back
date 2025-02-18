@@ -2,6 +2,7 @@ package org.univ_paris8.iut.montreuil.saemanagerback.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,10 +29,7 @@ public class Sae {
     @Column(name = "datemodificationsujet")
     private String dateModificationSujet;
 
-    /*@ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "idresponsable", referencedColumnName = "idresp")
-    private ResponsablesSae responsablesSae;*/
-
+/*
     @ManyToMany
     @JoinTable(
             name = "responsablessae",
@@ -40,24 +38,36 @@ public class Sae {
     )
     private List<ResponsablesSae> listeResponsables;
 
+ */
+
+    @ManyToOne
+    @JoinColumn(name = "idResponsable", referencedColumnName = "idPersonne", nullable = false)
+    private PersonneEntity createur;
+
+
+    @OneToMany(mappedBy = "sae", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ResponsablesSae> listeResponsables = new ArrayList<>();
 
     public Sae() {
 
     }
 
-    public Sae(String nomSae, String anneeUniversitaire, int semestreUniversitaire, String sujet, String dateModificationSujet, List<ResponsablesSae> listeResponsables /*ResponsablesSae responsablesSae*/) {
+    public Sae(String nomSae, String anneeUniversitaire, int semestreUniversitaire, String sujet, String dateModificationSujet ) {
         this.nomSae = nomSae;
         this.anneeUniversitaire = anneeUniversitaire;
         this.semestreUniversitaire = semestreUniversitaire;
         this.sujet = sujet;
         this.dateModificationSujet = dateModificationSujet;
-        //this.responsablesSae = responsablesSae;
-        this.listeResponsables = listeResponsables;
+
     }
 
 
     public int getIdSAE() {
         return idSAE;
+    }
+
+    public void setIdSAE(Integer idSAE) {
+        this.idSAE = idSAE;
     }
 
     public String getNomSae() {
@@ -115,5 +125,13 @@ public class Sae {
 
     public void setListeResponsables(List<ResponsablesSae> listeResponsables) {
         this.listeResponsables = listeResponsables;
+    }
+
+    public PersonneEntity getCreateur() {
+        return createur;
+    }
+
+    public void setCreateur(PersonneEntity createur) {
+        this.createur = createur;
     }
 }

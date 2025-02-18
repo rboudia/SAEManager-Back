@@ -5,24 +5,37 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "responsablessae")
-@IdClass(ResponsablesSaeId.class)
 public class ResponsablesSae {
 
-    @Id
+    @EmbeddedId
+    private ResponsablesSaeId id;
+
+
     @ManyToOne
-    @JoinColumn(name = "idSAE", nullable = false)
+    @MapsId("idSae") // Associe idsae de ResponsablesSaeId avec l'entité Sae
+    @JoinColumn(name = "idSAE")
     private Sae sae;
 
-    @Id
+
     @ManyToOne
-    @JoinColumn(name = "idResp", nullable = false)
+    @MapsId("idResp") // Associe idResp de ResponsablesSaeId avec l'entité PersonneEntity
+    @JoinColumn(name = "idResp")
     private PersonneEntity responsable;
 
     public ResponsablesSae() {}
 
     public ResponsablesSae(Sae sae, PersonneEntity responsable) {
+        this.id = new ResponsablesSaeId(sae.getIdSAE(), responsable.getIdPersonne());
         this.sae = sae;
         this.responsable = responsable;
+    }
+
+    public ResponsablesSaeId getId() {
+        return id;
+    }
+
+    public void setId(ResponsablesSaeId id) {
+        this.id = id;
     }
 
     public Sae getSae() {
