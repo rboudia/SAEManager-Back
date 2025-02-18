@@ -27,4 +27,7 @@ public class ResponsablesSaeId implements Serializable {
     public int hashCode() {
         return Objects.hash(sae, responsable);
     }
+
+
+
 }
