@@ -1,5 +1,6 @@
 package org.univ_paris8.iut.montreuil.saemanagerback.mapper;
 
+import org.springframework.stereotype.Component;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.ResponsablesSaeDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.PersonneEntity;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.ResponsablesSae;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Component
 public class ResponsableSaeMapper {
 
     public ResponsablesSaeDTO toDto(ResponsablesSae entity) {

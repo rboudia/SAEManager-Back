@@ -109,6 +109,11 @@ public class Sae {
     }
     */
 
+    public List<ResponsablesSae> getListeResponsables() {
+        return listeResponsables;
+    }
 
-
+    public void setListeResponsables(List<ResponsablesSae> listeResponsables) {
+        this.listeResponsables = listeResponsables;
+    }
 }
