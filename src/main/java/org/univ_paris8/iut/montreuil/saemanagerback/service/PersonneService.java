@@ -37,6 +37,13 @@ public class PersonneService {
                 .collect(Collectors.toList());
     }
 
+    public List<PersonneDTO> getPersonneByName(String name) {
+        return personneRepository.searchByNamePersonne(name)
+                .stream()
+                .map(personneMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     @Transactional(rollbackFor = Exception.class)
     public String updateEstProf(Integer estProf, List<Integer> idsPersonne) throws Exception {
         for (Integer idPersonne : idsPersonne) {

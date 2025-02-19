@@ -18,4 +18,9 @@ public interface PersonneRepository extends JpaRepository<PersonneEntity, Intege
     @Transactional
     @Query("UPDATE PersonneEntity p SET p.estProf = ?1 where p.idPersonne = ?2")
     void updateEstProf(Integer estProf, Integer id);
+
+
+    @Query("SELECT p FROM PersonneEntity p WHERE LOWER(p.prenom) LIKE LOWER(CONCAT('%', ?1, '%')) OR LOWER(p.nom) LIKE LOWER(CONCAT('%', ?1, '%'))")
+    List<PersonneEntity> searchByNamePersonne(String keyword);
+
 }
