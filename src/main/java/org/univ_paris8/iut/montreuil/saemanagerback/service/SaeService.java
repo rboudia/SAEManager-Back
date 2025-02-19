@@ -3,6 +3,7 @@ package org.univ_paris8.iut.montreuil.saemanagerback.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.univ_paris8.iut.montreuil.saemanagerback.dto.PersonneDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.SaeDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.PersonneEntity;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.ResponsablesSae;
@@ -82,6 +83,16 @@ public class SaeService {
 
         return saeMapper.toDto(sae);
     }
+
+    public List<SaeDTO> getAllSaes() {
+        return saeRepository.findAll()
+                .stream()
+                .map(sae -> saeMapper.toDto(sae))
+                .collect(Collectors.toList());
+
+    }
+
+
 
 
 }
