@@ -35,6 +35,13 @@ public class SaeController {
         return ResponseEntity.ok(saeList);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<SaeDTO> getSaes(@PathVariable("id") int id) {
+        SaeDTO saeDto = saeService.getSae(id);
+        return ResponseEntity.ok(saeDto);
+    }
+
+
 
 
 
