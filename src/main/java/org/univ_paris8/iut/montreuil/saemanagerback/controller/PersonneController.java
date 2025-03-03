@@ -5,15 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.univ_paris8.iut.montreuil.saemanagerback.dto.GroupeDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.PersonneDTO;
-import org.univ_paris8.iut.montreuil.saemanagerback.repository.GroupeRepository;
 import org.univ_paris8.iut.montreuil.saemanagerback.service.PersonneService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("personne")
@@ -69,5 +66,10 @@ public class PersonneController {
     @PostMapping
     public ResponseEntity<PersonneDTO> addPersonne(@RequestBody PersonneDTO personneDTO) {
         return ResponseEntity.ok(personneService.addPersonne(personneDTO));
+    }
+
+    @GetMapping("/disponibles")
+    public List<PersonneDTO> getEtudiantsBySAE(@RequestParam Integer idSAE) {
+        return personneService.getEtudiantsBySAE(idSAE);
     }
 }

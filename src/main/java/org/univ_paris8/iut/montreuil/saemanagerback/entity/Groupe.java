@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Groupe {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idgroupe")
     private Integer idGroupe;
 
@@ -15,9 +15,9 @@ public class Groupe {
     private String nom;
 
     @Column(name = "imagetitre")
-    private String imageTitre;
+    private String imageTitre = "67926371864af-groupeImage.png";
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "idsae", referencedColumnName = "idsae")
     private Sae sae;
 

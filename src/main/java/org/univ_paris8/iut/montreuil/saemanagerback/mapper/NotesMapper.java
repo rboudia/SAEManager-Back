@@ -3,8 +3,9 @@ package org.univ_paris8.iut.montreuil.saemanagerback.mapper;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.NotesDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.NotesEntity;
 
-public class NotesMapper {
+public class NotesMapper extends BaseMapper<NotesEntity, NotesDTO> {
 
+    @Override
     public NotesDTO toDTO(NotesEntity entity) {
         NotesDTO dto = new NotesDTO(
                 entity.getIdEval(),
@@ -16,7 +17,7 @@ public class NotesMapper {
         return dto;
     }
 
-
+    @Override
     public NotesEntity toEntity(NotesDTO dto) {
         NotesEntity entity = new NotesEntity();
 

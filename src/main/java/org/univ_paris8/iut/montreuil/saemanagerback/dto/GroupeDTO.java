@@ -1,28 +1,21 @@
 package org.univ_paris8.iut.montreuil.saemanagerback.dto;
 
-import org.univ_paris8.iut.montreuil.saemanagerback.entity.Sae;
+
+import java.util.List;
 
 public class GroupeDTO {
-    private Integer idGroupe;
     private String nom;
     private String imageTitre;
-    private Sae sae;
+    private Integer idSae;
     private Integer estModifiableParEleve;
+    private List<Integer> idsEtudiants;
 
-    public GroupeDTO(Integer idGroupe, String nom, String imageTitre, Sae sae, Integer estModifiableParEleve) {
-        this.idGroupe = idGroupe;
+    public GroupeDTO(String nom, String imageTitre, Integer idSae, Integer estModifiableParEleve, List<Integer> idsEtudiants) {
         this.nom = nom;
         this.imageTitre = imageTitre;
-        this.sae = sae;
+        this.idSae = idSae;
         this.estModifiableParEleve = estModifiableParEleve;
-    }
-
-    public Integer getIdGroupe() {
-        return idGroupe;
-    }
-
-    public void setIdGroupe(Integer idGroupe) {
-        this.idGroupe = idGroupe;
+        this.idsEtudiants = idsEtudiants;
     }
 
     public String getNom() {
@@ -41,12 +34,12 @@ public class GroupeDTO {
         this.imageTitre = imageTitre;
     }
 
-    public Sae getSae() {
-        return sae;
+    public Integer getIdSae() {
+        return idSae;
     }
 
-    public void setSae(Sae sae) {
-        this.sae = sae;
+    public void setIdSae(Integer idSae) {
+        this.idSae = idSae;
     }
 
     public Integer getEstModifiableParEleve() {
@@ -55,5 +48,13 @@ public class GroupeDTO {
 
     public void setEstModifiableParEleve(Integer estModifiableParEleve) {
         this.estModifiableParEleve = estModifiableParEleve;
+    }
+
+    public List<Integer> getIdsEtudiants() {
+        return idsEtudiants;
+    }
+
+    public void setIdsEtudiants(List<Integer> idsEtudiants) {
+        this.idsEtudiants = idsEtudiants;
     }
 }

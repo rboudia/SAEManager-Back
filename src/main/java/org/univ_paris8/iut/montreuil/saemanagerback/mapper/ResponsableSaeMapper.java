@@ -3,8 +3,9 @@ package org.univ_paris8.iut.montreuil.saemanagerback.mapper;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.ResponsablesSaeDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.ResponsablesSae;
 
-public class ResponsableSaeMapper {
+public class ResponsableSaeMapper extends BaseMapper<ResponsablesSae, ResponsablesSaeDTO> {
 
+    @Override
     public ResponsablesSaeDTO toDTO(ResponsablesSae entity) {
 
         ResponsablesSaeDTO dto = new ResponsablesSaeDTO(
@@ -16,6 +17,7 @@ public class ResponsableSaeMapper {
 
     }
 
+    @Override
     public ResponsablesSae toEntity(ResponsablesSaeDTO dto) {
 
         ResponsablesSae entity = new ResponsablesSae();
