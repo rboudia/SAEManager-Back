@@ -69,4 +69,11 @@ public class PersonneService {
         personneEntity.setLogin(personneEntity.getPrenom() + "." + personneEntity.getNom());
         return personneMapper.toDTO(personneRepository.save(personneEntity));
     }
+
+    public List<PersonneDTO> getEtudiantsBySAE(Integer idSAE) {
+        return personneRepository.getEtudiantsBySAE(idSAE)
+                .stream()
+                .map(personneMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 }

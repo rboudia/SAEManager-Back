@@ -23,4 +23,23 @@ public interface PersonneRepository extends JpaRepository<PersonneEntity, Intege
     @Query("SELECT p FROM PersonneEntity p WHERE LOWER(p.prenom) LIKE LOWER(CONCAT('%', ?1, '%')) OR LOWER(p.nom) LIKE LOWER(CONCAT('%', ?1, '%'))")
     List<PersonneEntity> searchByNamePersonne(String keyword);
 
+
+    @Query(value = """
+                SELECT p.* 
+                FROM EleveInscritSae e
+                INNER JOIN Personne p ON p.idPersonne = e.idEleve
+                WHERE e.idSAE = ?1
+                AND e.idEleve NOT IN (
+                    SELECT pe.idEleve FROM PropositionsEleve pe
+                    INNER JOIN PropositionsGroupe pg using(idProposition)
+                    WHERE pg.idSAE = ?1
+                )
+                AND e.idEleve NOT IN (
+                    SELECT eg.idEtudiant FROM EtudiantGroupe eg
+                    INNER JOIN Groupe g ON eg.idGroupe = g.idgroupe
+                    WHERE g.idSAE = ?1
+                )
+            """, nativeQuery = true)
+    List<PersonneEntity> getEtudiantsBySAE(Integer idSae);
+
 }

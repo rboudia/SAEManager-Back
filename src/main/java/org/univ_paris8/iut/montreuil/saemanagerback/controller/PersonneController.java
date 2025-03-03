@@ -73,5 +73,8 @@ public class PersonneController {
         return ResponseEntity.ok(personneService.addPersonne(personneDTO));
     }
 
-
+    @GetMapping("/disponibles")
+    public List<PersonneDTO> getEtudiantsBySAE(@RequestParam Integer idSAE) {
+        return personneService.getEtudiantsBySAE(idSAE);
+    }
 }
