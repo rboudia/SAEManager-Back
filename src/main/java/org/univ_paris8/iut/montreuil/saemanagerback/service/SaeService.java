@@ -92,6 +92,13 @@ public class SaeService {
 
     }
 
+    public SaeDTO getSae(int id) {
+        return saeRepository.findById(id)
+                .map(sae-> saeMapper.toDto(sae))
+                .orElse(null);
+    }
+
+
 
 
 
