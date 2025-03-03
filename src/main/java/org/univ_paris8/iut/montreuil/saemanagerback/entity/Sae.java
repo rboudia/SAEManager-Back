@@ -29,19 +29,8 @@ public class Sae {
     @Column(name = "datemodificationsujet")
     private String dateModificationSujet;
 
-/*
-    @ManyToMany
-    @JoinTable(
-            name = "responsablessae",
-            joinColumns = @JoinColumn(name = "idsae"),
-            inverseJoinColumns = @JoinColumn(name = "idresp")
-    )
-    private List<ResponsablesSae> listeResponsables;
-
- */
-
     @ManyToOne
-    @JoinColumn(name = "idResponsable", referencedColumnName = "idPersonne", nullable = false)
+    @JoinColumn(name = "idresponsable", referencedColumnName = "idpersonne", nullable = false)
     private PersonneEntity createur;
 
 

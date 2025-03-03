@@ -18,4 +18,23 @@ public interface PersonneRepository extends JpaRepository<PersonneEntity, Intege
     @Transactional
     @Query("UPDATE PersonneEntity p SET p.estProf = ?1 where p.idPersonne = ?2")
     void updateEstProf(Integer estProf, Integer id);
+
+    @Query(value = """
+                SELECT p.* 
+                FROM EleveInscritSae e
+                INNER JOIN Personne p ON p.idPersonne = e.idEleve
+                WHERE e.idSAE = ?1
+                AND e.idEleve NOT IN (
+                    SELECT pe.idEleve FROM PropositionsEleve pe
+                    INNER JOIN PropositionsGroupe pg using(idProposition)
+                    WHERE pg.idSAE = ?1
+                )
+                AND e.idEleve NOT IN (
+                    SELECT eg.idEtudiant FROM EtudiantGroupe eg
+                    INNER JOIN Groupe g ON eg.idGroupe = g.idgroupe
+                    WHERE g.idSAE = ?1
+                )
+            """, nativeQuery = true)
+    List<PersonneEntity> getEtudiantsBySAE(Integer idSae);
+
 }
