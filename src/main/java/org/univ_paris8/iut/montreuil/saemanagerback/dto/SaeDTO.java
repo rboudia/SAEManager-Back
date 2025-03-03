@@ -5,6 +5,7 @@ import org.univ_paris8.iut.montreuil.saemanagerback.entity.ResponsablesSae;
 import java.util.List;
 
 public class SaeDTO {
+    private int idSae;
 
     private String nomSae;
 
@@ -27,8 +28,8 @@ public class SaeDTO {
     }
 
 
-    public SaeDTO(String nomSae, String anneeUniversitaire, Integer semestreUniversitaire, String sujet, String dateModificationSujet, Integer idResponsable,List<ResponsablesSaeDTO> listeResponsablesSaeDto /*ResponsablesSae responsablesSae*/) {
-
+    public SaeDTO(int idSae ,String nomSae, String anneeUniversitaire, Integer semestreUniversitaire, String sujet, String dateModificationSujet, Integer idResponsable,List<ResponsablesSaeDTO> listeResponsablesSaeDto /*ResponsablesSae responsablesSae*/) {
+        this.idSae = idSae;
         this.nomSae = nomSae ;
         this.anneeUniversitaire = anneeUniversitaire ;
         this.semestreUniversitaire = semestreUniversitaire ;
@@ -38,6 +39,10 @@ public class SaeDTO {
         this.idResponsable = idResponsable;
         this.listeResponsablesSaeDto = listeResponsablesSaeDto;
 
+    }
+
+    public int getIdSae() {
+        return idSae;
     }
 
 

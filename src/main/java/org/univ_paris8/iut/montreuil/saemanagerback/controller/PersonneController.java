@@ -39,6 +39,11 @@ public class PersonneController {
         return personneService.getPersonnesByEstProf(0);
     }
 
+    @GetMapping("/name")
+    public List<PersonneDTO> getPersonneByName(@RequestParam String name) {
+        return personneService.getPersonneByName(name);
+    }
+
     @PutMapping("/prof/ajouterProf")
     public ResponseEntity<String> ajouterProf(@RequestBody List<Integer> idsPersonne) {
         try {

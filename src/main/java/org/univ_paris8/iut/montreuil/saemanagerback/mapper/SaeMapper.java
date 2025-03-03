@@ -29,6 +29,7 @@ public class SaeMapper {
         }
 
         return new SaeDTO(
+                entity.getIdSAE(),
                 entity.getNomSae(),
                 entity.getAnneeUniversitaire(),
                 entity.getSemestreUniversitaire(),
