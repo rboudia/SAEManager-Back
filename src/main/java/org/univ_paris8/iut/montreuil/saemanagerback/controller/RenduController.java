@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.RenduDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.service.RenduService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("rendu")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -26,4 +28,10 @@ public class RenduController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public List<RenduDTO> getRendus(@RequestParam Integer idSAE) {
+        return renduService.getRendusBySAE(idSAE);
+    }
+    
 }
