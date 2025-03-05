@@ -38,6 +38,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Username is already in use");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole("ETUDIANT");
         return ResponseEntity.ok(userRepository.save(user));
     }
 
