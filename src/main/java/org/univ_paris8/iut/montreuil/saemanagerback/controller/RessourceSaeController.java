@@ -35,4 +35,19 @@ public class RessourceSaeController {
         return ResponseEntity.ok(createdRessourceSae);
     }
 
+    @DeleteMapping("/{idSae}/{idRessource}")
+    public ResponseEntity<Void> deleteRessourceSae(
+            @PathVariable Integer idSae,
+            @PathVariable Integer idRessource) {
+        ressourceSaeService.deleteRessourceSae(idSae, idRessource);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{idSae}")
+    public ResponseEntity<List<RessourceSaeDTO>> getRessourcesBySae(@PathVariable Integer idSae) {
+        List<RessourceSaeDTO> ressources = ressourceSaeService.getRessourcesBySae(idSae);
+        return ResponseEntity.ok(ressources);
+    }
+
+
 }

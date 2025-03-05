@@ -1,10 +1,7 @@
 package org.univ_paris8.iut.montreuil.saemanagerback.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.PersonneDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.RessourceDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.service.PersonneService;
@@ -28,4 +25,16 @@ public class RessourceController {
     public List<RessourceDTO> getRessources() {
         return ressourceService.getAllRessources();
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteRessource(@PathVariable int id) {
+        ressourceService.deleteRessource(id);
+    }
+
+    @PostMapping
+    public RessourceDTO createRessource(@RequestBody RessourceDTO ressourceDTO) {
+        return ressourceService.createRessource(ressourceDTO);
+    }
+
+
 }
