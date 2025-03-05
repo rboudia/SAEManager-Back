@@ -1,5 +1,6 @@
 package org.univ_paris8.iut.montreuil.saemanagerback.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.univ_paris8.iut.montreuil.saemanagerback.dto.RessourceSaeDTO;
@@ -32,14 +33,27 @@ public class RessourceSaeService {
     }
 
     public RessourceSAE createRessourceSae(RessourceSaeDTO dto) {
-        RessourceSaeId id = new RessourceSaeId(dto.getIdSAE(), dto.getiDRessource());
-
-
-
         RessourceSAE ressourceSae = new RessourceSAE(dto.getIdSAE(), dto.getiDRessource(), dto.getMisEnAvant());
         return ressourceSaeRepository.save(ressourceSae);
     }
 
+    @Transactional
+    public void deleteRessourceSae(Integer idSae, Integer idRessource) {
+        RessourceSaeId ressourceSaeId = new RessourceSaeId(idSae, idRessource);
+
+        if (!ressourceSaeRepository.existsById(ressourceSaeId)) {
+            throw new IllegalArgumentException("RessourceSAE non trouvée !");
+        }
+
+        ressourceSaeRepository.deleteById(ressourceSaeId);
+    }
+
+    public List<RessourceSaeDTO> getRessourcesBySae(Integer idSae) {
+        return ressourceSaeRepository.findById_IdSae(idSae)
+                .stream()
+                .map(ressourceSaeMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 
 
 }
