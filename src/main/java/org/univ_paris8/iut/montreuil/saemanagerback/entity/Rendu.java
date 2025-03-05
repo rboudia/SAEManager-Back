@@ -1,5 +1,6 @@
 package org.univ_paris8.iut.montreuil.saemanagerback.entity;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jdk.jfr.Enabled;
 
@@ -17,17 +18,18 @@ public class Rendu {
     private String nom;
 
     @Column(name = "dateLimite")
-    private Date coef;
+    private Date dateLimite;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "idSAE", referencedColumnName = "idSAE")
-    private Sae idSAE;
+    private Sae sae;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "idEvaluation", referencedColumnName = "idEval")
-    private Evaluation idEvaluation;
+    private Evaluation evaluation;
 
-    public Rendu() {}
+    public Rendu() {
+    }
 
     public int getIdRendu() {
         return idRendu;
@@ -45,28 +47,28 @@ public class Rendu {
         this.nom = nom;
     }
 
-    public Date getCoef() {
-        return coef;
+    public Date getDateLimite() {
+        return dateLimite;
     }
 
-    public void setCoef(Date coef) {
-        this.coef = coef;
+    public void setDateLimite(Date dateLimite) {
+        this.dateLimite = dateLimite;
     }
 
-    public Sae getIdSAE() {
-        return idSAE;
+    public Sae getSae() {
+        return sae;
     }
 
-    public void setIdSAE(Sae idSAE) {
-        this.idSAE = idSAE;
+    public void setSae(Sae sae) {
+        this.sae = sae;
     }
 
-    public Evaluation getIdEvaluation() {
-        return idEvaluation;
+    public Evaluation getEvaluation() {
+        return evaluation;
     }
 
-    public void setIdEvaluation(Evaluation idEvaluation) {
-        this.idEvaluation = idEvaluation;
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
     }
 }
 

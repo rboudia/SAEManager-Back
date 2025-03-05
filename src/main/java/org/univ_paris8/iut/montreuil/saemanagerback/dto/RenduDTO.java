@@ -3,25 +3,24 @@ package org.univ_paris8.iut.montreuil.saemanagerback.dto;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.Evaluation;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.Sae;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 
 public class RenduDTO {
 
-    private Integer idRendu;
+    //private Integer idRendu;
     private String nom;
     private Date dateLimite;
-    private Sae idSAE;
-    private Evaluation idEvaluation;
+    private Sae sae;
+    private Evaluation evaluation;
 
-    public RenduDTO(Integer idRendu, String nom, Date dateLimite, Sae idSAE, Evaluation idEvaluation) {
-        this.idRendu = idRendu;
+    public RenduDTO(Integer idRendu, String nom, Date dateLimite, Sae sae, Evaluation evaluation) {
+        //this.idRendu = idRendu;
         this.nom = nom;
         this.dateLimite = dateLimite;
-        this.idSAE = idSAE;
-        this.idEvaluation = idEvaluation;
+        this.sae = sae;
+        this.evaluation = evaluation;
     }
-
+/*
     public Integer getIdRendu() {
         return idRendu;
     }
@@ -29,7 +28,7 @@ public class RenduDTO {
     public void setIdRendu(Integer idRendu) {
         this.idRendu = idRendu;
     }
-
+*/
     public String getNom() {
         return nom;
     }
@@ -46,20 +45,20 @@ public class RenduDTO {
         this.dateLimite = dateLimite;
     }
 
-    public Sae getIdSAE() {
-        return idSAE;
+    public Sae getSae() {
+        return sae;
     }
 
-    public void setIdSAE(Sae idSAE) {
-        this.idSAE = idSAE;
+    public void setSae(Sae sae) {
+        this.sae = sae;
     }
 
-    public Evaluation getIdEvaluation() {
-        return idEvaluation;
+    public Evaluation getEvaluation() {
+        return evaluation;
     }
 
-    public void setIdEvaluation(Evaluation idEvaluation) {
-        this.idEvaluation = idEvaluation;
+    public void setEvaluation(Evaluation evaluation) {
+        this.evaluation = evaluation;
     }
 
 }
