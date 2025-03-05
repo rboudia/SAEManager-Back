@@ -11,13 +11,13 @@ public class EvaluationDTO {
     private Integer idEval;
     private String nom;
     private Double coef;
-    private PersonneEntity IntervenantEvaluateur;
+    private PersonneEntity intervenantEvaluateur;
 
     public EvaluationDTO(Integer idEval, String nom, Double coef, PersonneEntity intervenantEvaluateur) {
         this.idEval = idEval;
         this.nom = nom;
         this.coef = coef;
-        IntervenantEvaluateur = intervenantEvaluateur;
+        this.intervenantEvaluateur = intervenantEvaluateur;
     }
 
     public Integer getIdEval() {
@@ -45,10 +45,10 @@ public class EvaluationDTO {
     }
 
     public PersonneEntity getIntervenantEvaluateur() {
-        return IntervenantEvaluateur;
+        return intervenantEvaluateur;
     }
 
     public void setIntervenantEvaluateur(PersonneEntity intervenantEvaluateur) {
-        IntervenantEvaluateur = intervenantEvaluateur;
+        this.intervenantEvaluateur = intervenantEvaluateur;
     }
 }

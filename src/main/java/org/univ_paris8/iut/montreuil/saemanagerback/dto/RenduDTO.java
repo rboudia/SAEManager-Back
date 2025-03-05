@@ -11,9 +11,9 @@ public class RenduDTO {
     private String nom;
     private Date dateLimite;
     private Sae sae;
-    private Evaluation evaluation;
+    private EvaluationDTO evaluation;
 
-    public RenduDTO(Integer idRendu, String nom, Date dateLimite, Sae sae, Evaluation evaluation) {
+    public RenduDTO(Integer idRendu, String nom, Date dateLimite, Sae sae, EvaluationDTO evaluation) {
         //this.idRendu = idRendu;
         this.nom = nom;
         this.dateLimite = dateLimite;
@@ -53,11 +53,11 @@ public class RenduDTO {
         this.sae = sae;
     }
 
-    public Evaluation getEvaluation() {
+    public EvaluationDTO getEvaluation() {
         return evaluation;
     }
 
-    public void setEvaluation(Evaluation evaluation) {
+    public void setEvaluation(EvaluationDTO evaluation) {
         this.evaluation = evaluation;
     }
 

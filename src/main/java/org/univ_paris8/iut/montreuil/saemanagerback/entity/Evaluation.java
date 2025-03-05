@@ -9,7 +9,7 @@ public class Evaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEval")
-    private int idEval;
+    private Integer idEval;
 
     @Column(name = "nom")
     private String nom;
@@ -23,11 +23,11 @@ public class Evaluation {
 
     public Evaluation() {}
 
-    public int getIdEval() {
+    public Integer getIdEval() {
         return idEval;
     }
 
-    public void setIdEval(int idEval) {
+    public void setIdEval(Integer idEval) {
         this.idEval = idEval;
     }
 

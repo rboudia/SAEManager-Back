@@ -4,6 +4,9 @@ import org.univ_paris8.iut.montreuil.saemanagerback.dto.RenduDTO;
 import org.univ_paris8.iut.montreuil.saemanagerback.entity.Rendu;
 
 public class RenduMapper extends BaseMapper <Rendu, RenduDTO> {
+
+    private final EvaluationMapper evaluationMapper = new EvaluationMapper();
+
     @Override
     public RenduDTO toDTO(Rendu entity) {
         RenduDTO dto = new RenduDTO(
@@ -11,7 +14,7 @@ public class RenduMapper extends BaseMapper <Rendu, RenduDTO> {
                 entity.getNom(),
                 entity.getDateLimite(),
                 entity.getSae(),
-                entity.getEvaluation());
+                evaluationMapper.toDTO(entity.getEvaluation()));
 
         return dto;
     }
@@ -24,7 +27,12 @@ public class RenduMapper extends BaseMapper <Rendu, RenduDTO> {
         entity.setNom(dto.getNom());
         entity.setDateLimite(dto.getDateLimite());
         entity.setSae(dto.getSae());
-        entity.setEvaluation(dto.getEvaluation());
+        if (dto.getEvaluation() != null) {
+            entity.setEvaluation(evaluationMapper.toEntity(dto.getEvaluation()));
+
+        } else {
+            entity.setEvaluation(null);
+        }
 
         return entity;
     }
